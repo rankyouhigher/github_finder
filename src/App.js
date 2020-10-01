@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react'
+import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Users from './components/users/Users'
@@ -19,13 +19,6 @@ class App extends Component {
     alert: null
   }
 
-  // async componentDidMount() {
-  //   this.setState({ loading: true })
-  //   const res = await axios.get(
-  //     `https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-  //   )
-  //   this.setState({ users: res.data, loading: false })
-  // }
   searchUsers = async text => {
     this.setState({ loading: true })
     const res = await axios.get(
@@ -68,7 +61,7 @@ class App extends Component {
               exact
               path='/'
               render={props => (
-                <Fragment>
+                <div>
                   <Search
                     searchUsers={this.searchUsers}
                     clearUsers={this.claerUsers}
@@ -76,7 +69,7 @@ class App extends Component {
                     setAlert={this.setAlert}
                   />
                   <Users loading={loading} users={users} />
-                </Fragment>
+                </div>
               )}
             />
             <Route exact path='/about' component={About} />
